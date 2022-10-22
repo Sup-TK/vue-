@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例_methods版</title>
+</head>
+<body>
+    <!-- 
+        只要当data中的数据发生变化时，Vue会重新解析模板中的代码，
+        遇到插值表达式中的函数，会重新调用
+     -->
+    <div id="app">
+        姓：<input type="text" v-model="firstName"> <br><br>
+        名：<input type="text" v-model="lastName"> <br><br>
+        全名：<span> {{fullName()}} </span>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                firstName: "张",
+                lastName: "三"
+            },
+            methods: {
+                fullName () {
+                    return this.firstName + "-" + this.lastName;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
