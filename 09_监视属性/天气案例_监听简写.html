@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>天气案例_监听简写</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>今天天气很{{Info}}</h1>
+        <button @click="changeWeather">切换天气</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                isHot: true,
+            },
+            computed: {
+                Info() {
+                    return this.isHot ? "炎热" : "凉爽";
+                }
+            },
+            methods: {
+                changeWeather() {
+                    return this.isHot = !this.isHot;
+                }
+            },
+            watch: {
+                //完整写法 可配置immediate  deep
+                isHot: {
+                     //immediate: true,    //初始化时让handler调用
+                     //deep: true,    //深度监视
+                    //当isHot发生改变时调用
+                    handler (oldValue, newValue) {
+                        console.log("isHot被修改了",newValue, oldValue);
+                    }
+                },
+
+                //简写 不可配置immediate  deep
+                // isHot(oldValue, newValue) {
+                //     //只写handler中的操作
+                //     console.log("isHot被修改了", newValue, oldValue);
+                // }
+            }
+        })
+        //第二种完整写法 可配置immediate  deep
+        // vm.$watch('isHot', {
+        //     immediate: true,    //初始化时让handler调用
+        //     deep: true,    //深度监视
+        //     //当isHot发生改变时调用
+        //     handler(oldValue, newValue) {
+        //         console.log("isHot被修改了", newValue, oldValue);
+        //     }
+        // })
+
+        //第二种简写  不可配置immediate  deep
+        // vm.$watch('isHot', function(oldValue, newValue) {
+        //     //只写handler中的操作
+        //     console.log("isHot被修改了", newValue, oldValue);
+        // })
+    </script>
+</body>
+
+</html>
