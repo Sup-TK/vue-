@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>key的原理</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>人员列表（遍历数组）</h2>
+        <ul>
+            <li>姓名-名字</li>
+            <li v-for="(p, index) in  person" :key="p.id">
+                {{p.name}}-{{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+        <button @click="add">点击添加一个SB</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                person: [
+                    {id:"001",name:"张三",age:18},
+                    {id:"002",name:"李四",age:19},
+                    {id:"003",name:"王五",age:20},
+                ]
+            },
+            methods: {
+                add() {
+                    const sb = {id:"004",name:"SB",age:250};
+                    this.person.unshift(sb);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

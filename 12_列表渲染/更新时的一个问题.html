@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>更新时的一个问题</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>人员列表</h2>
+        <button @click="updateEason">更改陈奕迅信息</button>
+        <ul>
+            <li v-for="(p, index) in  person" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                person: [
+                    { id: "001", name: "陈奕迅", age: 35, sex: "男" },
+                    { id: "002", name: "毛晓彤", age: 30, sex: "女" },
+                    { id: "003", name: "周  延", age: 20, sex: "男" },
+                    { id: "004", name: "TizzyT", age: 29, sex: "男" },
+                ],
+            },
+            methods: {
+                updateEason() {
+                    this.person[0].name = '赵志达', //奏效
+                    this.person[0].age = 24,    //奏效
+                    this.person[0].sex = '男'   //奏效
+
+                    //不奏效  vue没有监听到数据变化
+                    // this.person[0] = { id: "001", name: "赵志达", age: 24, sex: "男" } 
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

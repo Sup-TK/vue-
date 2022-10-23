@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>基本列表</title>
+</head>
+
+<body>
+    <!-- 
+        v-for可用于遍历数组，对象，字符串（用的少），指定次数（用的少）
+     -->
+    <div id="app">
+        <h2>人员列表（遍历数组）</h2>
+        <ul>
+            <li>姓名-名字</li>
+            <li v-for="(p, index) in  person" :key="index">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+
+        <h2>汽车信息（遍历对象）</h2>
+        <ul>
+            <li>key-value</li>
+            <li v-for="(value, k) in  car" :key="k">
+                {{k}}-{{value}}
+            </li>
+        </ul>
+
+        <h2>测试遍历字符串</h2>
+        <ul>
+            <li>key-value</li>
+            <li v-for="(char, k) in  str" :key="k">
+                {{k}}-{{char}}
+            </li>
+        </ul>
+
+        <h2>测试遍历指定次数</h2>
+        <ul>
+            <li>key-value</li>
+            <li v-for="(number, k) in  6" ::key="k">
+                {{k}}-{{number}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                person: [
+                    {id:"001",name:"张三",age:18},
+                    {id:"002",name:"李四",age:19},
+                    {id:"003",name:"王五",age:20},
+                ],
+                car: {
+                    name: "奔驰AMG",
+                    price: "2000万",
+                    color: "赛车专用"
+                },
+                str: "MotherFucker"
+            }
+        })
+    </script>
+</body>
+
+</html>
