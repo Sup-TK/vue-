@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟数据监测</title>
+</head>
+<body>
+    <script>
+        let data = {
+            name: "zzd",
+            address: "NJC"
+        }
+
+        //创建一个实例对象，用于检测data中的数据变化
+        const obs = new Observer(data);
+        console.log(obs);
+
+        //准备一个vm实例对象
+        let vm = {}
+        vm._data = data = obs
+
+        function Observer(obj) {
+            const key = Object.keys(obj);
+            //遍历
+            key.forEach( (k) => {
+                Object.defineProperty(this, k, {
+                    get () {
+                        return obj[k]
+                    },
+                    set (val) {
+                        console.log(`${k}被修改，我要去解析模板，生成虚拟dom。。。。。。我要开始忙起来了`);
+                        obj[k] = val
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+</html>
