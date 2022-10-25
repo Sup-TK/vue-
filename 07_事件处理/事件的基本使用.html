@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>学习Vue</h2>
+        <button @click="showInfo1">点击事件(不传参)</button>
+        <button @click="showInfo2($event,66)">点击事件(传参)</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+            //不能写成箭头函数，箭头函数的this值就不是vm，是window
+                showInfo1 () {
+                    alert("弹窗1");
+                },
+                showInfo2 (event, number) {
+                    console.log(event, number);
+                    console.log(this === vm);
+                    alert("弹窗2");
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

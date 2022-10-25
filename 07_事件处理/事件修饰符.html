@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+        .demo {
+            width: 100px;
+            height: 60px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{name}}</h2>
+        <!-- 只有弹窗，但是不跳转 -->
+        <a href="https://cn.vuejs.org/" @click.prevent="showInfo3">阻止默认事件</a>
+
+        <div class="demo" @click="showInfo3">
+            <button @click.stop="showInfo3">阻止事件冒泡</button>
+        </div>
+        
+        <button @click.once="showInfo3">事件只触发一次</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                name: "zzd"
+            },
+            methods: {
+                showInfo3 () {
+                    alert("弹窗3");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

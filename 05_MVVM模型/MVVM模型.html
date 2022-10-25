@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        M： 模型(model)： data的数据
+        V： 视图(View)：  模板代码
+        VM： 试图模型(ViewModel)：  Vue实例  
+        data中的所有属性，最后都出现在了vm身上
+        vm身上所有的属性 及 vue原型上所有属性，在vue模板中都可以使用
+    -->
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h1>{{city}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                name: "zzd",
+                city: "NJC"
+            }
+        })
+        console.log(vm);
+    </script>
+</body>
+
+</html>
