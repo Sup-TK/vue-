@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>收集表单数据</title>
+</head>
+
+<body>
+
+    <!-- 
+        <input type="text" /> v-model收集的是value值，用户输入的是value值
+        <input type="radio" /> v-model收集的是value值，且要给标签配置value值
+        <input type="checkbox" /> 
+                若没有配置input的value值，收集的是checked(true/false)
+                若配置input的value属性，v-model的初始值是数组，收集value后会组成数组
+     -->
+
+    <div id="app">
+        <form @submit.prevent="demo">
+            <!-- .trim 去掉首尾的空格 -->
+            账号：<input type="text" v-model.trim="userInfo.account"> <br>
+            密码：<input type="password" v-model="userInfo.password"> <br>
+            <!--  .number 收集的数据变成数字 -->
+            年龄：<input type="number" v-model.number="userInfo.age"> <br>  
+            性别：
+            男<input type="radio" name="sex" value="male" v-model="userInfo.sex">
+            女<input type="radio" name="sex" value="female" v-model="userInfo.sex"> <br>
+            爱好：
+            篮球：<input type="checkbox" v-model="userInfo.hobby" value="basketball">
+            说唱：<input type="checkbox" v-model="userInfo.hobby" value="hip-hop">
+            逛街：<input type="checkbox" v-model="userInfo.hobby" value="shopping"> <br>
+            所在城市：
+            <select v-model="userInfo.city">
+                <option value="">请选择城市</option>
+                <option value="dalian">大连</option>
+                <option value="shenyang">沈阳</option>
+                <option value="fushun">抚顺</option>
+                <option value="nanjing">南京</option>
+            </select> <br>
+            其他信息：
+            <!-- .lazy 失去焦点的一瞬间再进行收集 -->
+            <textarea v-model.lazy="userInfo.other"></textarea> <br>
+            <input type="checkbox" v-model="userInfo.agree">阅读并接受<a href="#">《用户协议》</a> <br>
+            <button>提交</button>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                userInfo: {
+                    account: "",
+                    password: "",
+                    age: "",
+                    sex: "male",
+                    hobby: [],
+                    city: "nanjing",
+                    other: "",
+                    agree: ""
+                }
+            },
+            methods: {
+                demo() {
+                    console.log(JSON.stringify(this.userInfo));
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

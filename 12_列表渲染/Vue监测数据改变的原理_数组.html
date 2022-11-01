@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue监测数据改变的原理_数组</title>
+</head>
+<body>
+    <div id="app">
+        <h1>信息</h1>
+        <h2>名字：{{zzd.name}}</h2>
+        <h2>城市：{{zzd.city}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <button @click="addSex">添加一个性别属性，默认值是男</button>
+        <h2>姓名 ：{{student.name}}</h2>
+        <h2 v-if="student.sex">性别：{{student.sex}}</h2>
+        <h2>年龄：真实：{{student.age.rAge}}，对外：{{student.age.sAge}}</h2>
+        <h2>朋友们</h2>
+        <ul>
+            <li v-for="(f, index) in student.friends" :key="index">
+                {{f.name}}-{{f.age}}
+            </li>
+        </ul>
+        <h2>爱好</h2>
+        <ul>
+            <li v-for="(h, index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                zzd: {
+                    name: "zzd",
+                    city: "NJC",
+                },
+                student: {
+                    name: "Eric",
+                    age: {
+                        rAge: 24,
+                        sAge: 18
+                    },
+                    //vue不会为数组中的元素设置getter和setter.通过数组索引更新元素，vue不会监测到更不会响应
+                    //需要使用能改变原数组的7个方法 push pop shift unshift reverse splice sort 
+                    hobby:["篮球","hip-hop","逛街"],
+                    friends: [
+                        { name: 'tom', age: 20 },
+                        { name: 'jerry', age: 22 }
+                    ]
+                },
+
+            },
+            methods: {
+                addSex() {
+                    Vue.set(this.student, "sex", "男");
+                    this.$set(this.student, "sex", "男");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

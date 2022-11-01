@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue.set的使用</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>信息</h1>
+        <h2>名字：{{zzd.name}}</h2>
+        <h2>城市：{{zzd.city}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <button @click="addSex">添加一个性别属性，默认值是男</button>
+        <h2>姓名 ：{{student.name}}</h2>
+        <h2 v-if="student.sex">性别：{{student.sex}}</h2>
+        <h2>年龄：真实：{{student.age.rAge}}，对外：{{student.age.sAge}}</h2>
+        <h2>朋友们</h2>
+        <ul>
+            <li v-for="(f, index) in student.friends" :key="index">
+                {{f.name}}-{{f.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                zzd: {
+                    name: "zzd",
+                    city: "NJC",
+                },
+                student: {
+                    name: "Eric",
+                    age: {
+                        rAge: 24,
+                        sAge: 18
+                    },
+                    friends: [
+                        { name: 'tom', age: 20 },
+                        { name: 'jerry', age: 22 }
+                    ]
+                },
+
+            },
+            methods: {
+                addSex() {
+                    Vue.set(this.student, "sex", "男");
+                    this.$set(this.student, "sex", "男");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

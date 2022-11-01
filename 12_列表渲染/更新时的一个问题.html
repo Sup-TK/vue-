@@ -32,12 +32,13 @@
             },
             methods: {
                 updateEason() {
-                    this.person[0].name = '赵志达', //奏效
-                    this.person[0].age = 24,    //奏效
-                    this.person[0].sex = '男'   //奏效
+                    // this.person[0].name = '赵志达', //奏效
+                    // this.person[0].age = 24,    //奏效
+                    // this.person[0].sex = '男'   //奏效
 
                     //不奏效  vue没有监听到数据变化
-                    // this.person[0] = { id: "001", name: "赵志达", age: 24, sex: "男" } 
+                    // this.person[0] = { id: "001", name: "赵志达", age: 24, sex: "男" } //不奏效
+                    this.person.splice(0,1,{ id: "001", name: "赵志达", age: 24, sex: "男" });  //奏效
                 }
             }
         })
