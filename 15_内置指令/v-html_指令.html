@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>v-html_指令</title>
+</head>
+<body>
+    <!-- 
+        一定要在可信的内容上使用v-html，永远不要在用户提交的内容上使用
+     -->
+    <div id="app">
+        <div>Hello, {{name}}</div>
+        <div v-text="name"></div>
+        <!-- v-html可以识别html结构 -->
+        <div v-html="str"> </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name: 'zzd',
+            str: '<h3>哈哈哈</h3>'
+        }
+    })
+</script>
+</html>

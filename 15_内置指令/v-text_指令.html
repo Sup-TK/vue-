@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>v-text_指令</title>
+</head>
+<body>
+
+    <!-- 
+        v-text
+            向其所在的节点中渲染文本内容。
+            与插值语法的区别：v-text会替换掉节点中的内容，插值语法则不会
+    -->
+
+    <div id="app">
+        <div>Hello, {{name}}</div>
+        <!-- v-text会读取数据替换掉整个div中的内容 -->
+        <div v-text="name">Hello, </div>
+        <div v-text="str"> </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name: 'zzd',
+            str: '<h3>哈哈哈</h3>'
+        }
+    })
+</script>
+</html>
