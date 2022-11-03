@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>自定义指令</title>
+</head>
+
+<body>
+    <!-- 
+        v-big 与 v-text类似 将数值放大10倍
+
+     -->
+    <div id="app">
+        <h2>当前n的值是：<span v-text="n"></span></h2>
+        <!-- <h2>放大10倍后的值是：<span v-big-number="n"></span></h2> -->
+        <h2>放大10倍后的值是：<span v-big="n"></span></h2>
+        <button @click="n ++">点我n+1</button>
+        <hr />
+        <input type="text" v-fbind:value="n">
+    </div>
+</body>
+<script>
+    //定义全局指令
+    // Vue.directive('fbind',{
+    //     //当元素与指令成功绑定时会调用（一上来）
+    //     bind(element, binding) {
+    //     element.value = binding.value;
+    // },
+    //     //指令所在元素被插入页面时
+    //     inserted(element, binding) {
+    //     element.focus();
+    // },
+    //     //指令所在的模板被重新解析式
+    //     update(element, binding) {
+    //     element.value = binding.value;
+    // }
+    // })
+    // Vue.directive('big', function(element, binding) {
+    //     // console.log(element, binding);
+    //     // console.log(element instanceof HTMLElement);
+    //     element.innerText = binding.value * 10;
+    // })
+
+
+    new Vue({
+        el: '#app',
+        data: {
+            n: 1
+        },
+        //局部自定义指令
+        directives: {
+            //element是指令所绑定的原生真实dom元素，binding是自定义指令对象
+            // big调用时间：
+            // 1.当元素与指令成功绑定时会调用（一上来）
+            // 2.当指令所在的模板被重新解析时
+            // 'big-number'(element, binding) {
+            //     // console.log(element, binding);
+            //     // console.log(element instanceof HTMLElement);
+            //     element.innerText = binding.value * 10;
+            // },
+            // 此时的this指向widow
+            big(element, binding) {
+                // console.log(element, binding);
+                // console.log(element instanceof HTMLElement);
+                element.innerText = binding.value * 10;
+            },
+
+            // 此时的this指向widow
+            fbind: {
+                //当元素与指令成功绑定时会调用（一上来）
+                bind(element, binding) {
+                    element.value = binding.value;
+                },
+                //指令所在元素被插入页面时
+                inserted(element, binding) {
+                    element.focus();
+                },
+                //指令所在的模板被重新解析式
+                update(element, binding) {
+                    element.value = binding.value;
+                }
+            }
+        }
+    })
+</script>
+
+</html>
